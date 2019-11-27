@@ -98,14 +98,16 @@ def storage_info():
 def user_info(): 
     get_users = subprocess.getoutput("/bin/cat /etc/passwd")
     get_groups = subprocess.getoutput("/bin/cat /etc/group")
-    get_sudoers = subprocess.getoutput("/bin/cat /etc/sudoer | grep -v \#")
-    get_sudoers.d = subprocess.getoutput("/bin")
+    get_sudoers = subprocess.getoutput("/bin/cat /etc/sudoers | grep -v \#")
+    #get_sudoers.d = subprocess.getoutput("/bin")
     
     print ("======================== User Info ========================")
     print (" ")
     print ("----- Users Info -----\n",get_users)
     print (" ")
     print ("----- Groups Info -----\n",get_groups)
+    print (" ")
+    print ("----- Sudeors Info -----\n",get_sudoers)
     print (" ")
 
 
