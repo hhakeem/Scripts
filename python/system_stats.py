@@ -2,6 +2,8 @@
 
 import os
 import subprocess
+import sys
+from contextlib import redirect_stdout
 
 def host_info():
     get_hostname = subprocess.Popen("hostname", shell=True, stdout=subprocess.PIPE)
@@ -128,11 +130,27 @@ def system_misc():
     print (" ")
 
 
+def redirected(path):
+    with open(path, 'w') as out:
+        with redirect_stdout(out):
+            host_info()
+            network_info()
+            storage_info()
+            user_info()
+            system_misc()
+
+if __name__ == '__main__':
+    path = 'test_output.txt'
+    redirected(path)
+
 host_info()
 network_info()
 storage_info()
 user_info()
 system_misc()
+
+
+
 
 
 #take all function output to a file, and to email. 
